@@ -1,0 +1,7 @@
+---
+consumer_key: YOUR TWITTER KEY
+consumer_secret: YOUR TWITTER SECRET
+tokens:
+  YOUR_TWITTER_SCREEN_NAME:
+    access_token: GENERATED
+    access_token_secret: GENERATED

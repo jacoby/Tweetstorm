@@ -37,7 +37,20 @@ sub tweetstorm {
         $twit->access_token_secret( $config->{access_token_secret} ) ;
         }
     unless ( $twit->authorized ) {
-        croak("Not Authorized") ;
+
+        # You have no auth token
+        # go to the auth website.
+        # they'll ask you if you wanna do this, then give you a PIN
+        # input it here and it'll register you.
+        # then save your token vals.
+
+        say "Authorize this app at ", $twit->get_authorization_url,
+            ' and enter the PIN#' ;
+        my $pin = <STDIN> ;    # wait for input
+        chomp $pin ;
+        my ( $access_token, $access_token_secret, $user_id, $screen_name )
+            = $twit->request_access_token( verifier => $pin ) ;
+        save_tokens( $user, $access_token, $access_token_secret ) ;
         }
 
     my $status_id ;
@@ -173,6 +186,17 @@ The text to accompany the image. Required.
 Display this text
 
 =back
+
+=head1 NOTES
+
+To use this app, you need to have both a consumer key and secret, representing you
+as a Twitter developer, and an access token and secret, representing you as a Twitter
+user. These do not need to be the same Twitter account. 
+
+Log into https://apps.twitter.com/ and click "Create New App", then store your 
+consumer_key and consumer_secret in ${HOME}/.twitter.cnf. The application should
+handle storing your access key and secret, but it will involve using a web browser to
+finish the OAuth connection.
 
 =head1 LICENSE
 

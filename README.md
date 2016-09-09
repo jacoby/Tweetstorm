@@ -28,6 +28,17 @@ referring to the previous one for easy reading
 
     Display this text
 
+# NOTES
+
+To use this app, you need to have both a consumer key and secret, representing you
+as a Twitter developer, and an access token and secret, representing you as a Twitter
+user. These do not need to be the same Twitter account. 
+
+Log into https://apps.twitter.com/ and click "Create New App", then store your 
+consumer\_key and consumer\_secret in ${HOME}/.twitter.cnf. The application should
+handle storing your access key and secret, but it will involve using a web browser to
+finish the OAuth connection.
+
 # LICENSE
 
 This is released under the Artistic 
